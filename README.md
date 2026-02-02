@@ -72,4 +72,4 @@ npm start
 - **Splits**: Real-time calculation with manual adjustment support.
 
 ---
-Built with ❤️ by [Krishnakumar Naik](https://github.com/Krishnakumar-Naik)
+Built by [Krishnakumar Naik](https://github.com/Krishnakumar-Naik)
