@@ -19,7 +19,7 @@
         <div *ngIf="view === 'list'" class="group-grid">
             <div class="glass-card group-card" *ngFor="let group of groups" (click)="selectGroup(group)">
                 <div class="group-icon">
-                    <i class="bi bi-people-fill"></i>
+                    <img src="/people.png" alt="Group">
                 </div>
                 <div class="group-info">
                     <h3>{{ group.name }}</h3>
