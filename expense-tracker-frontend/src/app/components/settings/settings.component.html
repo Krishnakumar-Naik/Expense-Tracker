@@ -1,0 +1,49 @@
+<div class="dashboard-wrapper">
+    <!-- Shared Web3 Navbar -->
+    <app-navbar></app-navbar>
+
+    <main class="content-container">
+        <h1 class="page-title">User <span class="text-gradient">Settings</span></h1>
+
+        <div class="settings-grid">
+            <!-- Profile Section -->
+            <div class="glass-card profile-card">
+                <div class="user-details" *ngIf="userProfile">
+                    <h2 class="user-name">{{ userProfile.name || 'Premium Member' }}</h2>
+                    <p class="user-email">{{ userProfile.email || 'Session active' }}</p>
+                    <span class="badge">Verified Member</span>
+                </div>
+            </div>
+
+            <!-- Configuration Section -->
+            <div class="glass-card config-card">
+                <h3>Preferences</h3>
+
+                <div class="setting-item">
+                    <label>Currency</label>
+                    <app-custom-dropdown [options]="currencyOptions" [(value)]="settings.currency">
+                    </app-custom-dropdown>
+                </div>
+
+                <div class="setting-item">
+                    <label>App Theme</label>
+                    <div class="theme-toggle">
+                        <button class="btn-theme" [class.active]="settings.theme === 'Dark'">Dark</button>
+                        <button class="btn-theme" disabled>Light (Coming Soon)</button>
+                    </div>
+                </div>
+
+                <button class="btn-primary-gradient" (click)="saveSettings()">Save Changes</button>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="glass-card danger-card">
+                <h3>Account Actions</h3>
+                <p>Manage your account security and session.</p>
+                <div class="btn-group">
+                    <button class="btn-outline-danger" (click)="authService.logout()">Logout (Close Session)</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,31 @@
+<div class="dashboard-wrapper">
+    <!-- Shared Web3 Navbar -->
+    <app-navbar></app-navbar>
+
+    <main class="reports-container">
+        <div class="reports-header">
+            <h1 class="reports-title">Financial <span class="text-gradient">Analytics</span></h1>
+            <p class="reports-subtitle">Visualize your spending patterns and income flow.</p>
+        </div>
+
+        <div class="charts-grid">
+            <div class="glass-card chart-card">
+                <div class="card-header">
+                    <h3 class="card-title">Expense by Category</h3>
+                </div>
+                <div class="chart-wrapper pie-chart">
+                    <canvas #pieCanvas></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card chart-card">
+                <div class="card-header">
+                    <h3 class="card-title">Monthly Income vs Expense</h3>
+                </div>
+                <div class="chart-wrapper bar-chart">
+                    <canvas #barCanvas></canvas>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

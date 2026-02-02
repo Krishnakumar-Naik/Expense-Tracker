@@ -1,0 +1,94 @@
+<div class="login-wrapper">
+  <!-- Brand Logo -->
+  <div class="brand-logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#logo_grad_1)" />
+        <path d="M2 17L12 22L22 17" stroke="url(#logo_grad_2)" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path d="M2 12L12 17L22 12" stroke="url(#logo_grad_3)" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <defs>
+          <linearGradient id="logo_grad_1" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#ec4899" />
+            <stop offset="1" stop-color="#3b82f6" />
+          </linearGradient>
+          <linearGradient id="logo_grad_2" x1="2" y1="17" x2="22" y2="17" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#ec4899" />
+            <stop offset="1" stop-color="#3b82f6" />
+          </linearGradient>
+          <linearGradient id="logo_grad_3" x1="2" y1="12" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#ec4899" />
+            <stop offset="1" stop-color="#3b82f6" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <span class="brand-text">Expense <span class="highlight">Tracker</span></span>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-container">
+    <!-- Glass Card -->
+    <div class="glass-card login-card">
+      <!-- Glow Border -->
+      <div class="glow-border"></div>
+
+      <div class="card-content">
+        <div class="header-section text-center">
+          <h2 class="welcome-text">Welcome <span class="text-gradient">Back!</span></h2>
+          <p class="subtitle">Login to your account</p>
+        </div>
+
+        <form (ngSubmit)="login()" class="login-form">
+          <!-- Email Input -->
+          <div class="input-group-custom">
+            <label class="input-label"><i class="bi bi-envelope-fill me-2"></i>Email</label>
+            <div class="input-field-wrapper">
+              <input type="email" class="custom-input" [(ngModel)]="user.email" name="email" required
+                placeholder="name@example.com">
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="input-group-custom">
+            <label class="input-label"><i class="bi bi-lock-fill me-2"></i>Password</label>
+            <div class="input-field-wrapper">
+              <input [type]="showPassword ? 'text' : 'password'" class="custom-input" [(ngModel)]="user.password"
+                name="password" required placeholder="Enter your password">
+              <button type="button" class="toggle-password" (click)="showPassword = !showPassword">
+                {{ showPassword ? 'Hide' : 'Show' }}
+              </button>
+            </div>
+          </div>
+
+          <div class="forgot-wrapper">
+            <a href="#" class="forgot-link">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="btn-primary-gradient">
+            Login
+          </button>
+
+          <div class="divider">
+            <span>Don't have an account?</span>
+          </div>
+
+          <a routerLink="/register" class="btn-secondary-outline">
+            Create an Account
+          </a>
+        </form>
+      </div>
+    </div>
+
+    <!-- 3D Decoration (Only visible on larger screens) -->
+    <!-- <div class="decoration-side">
+      <div class="floating-chart">
+        <div class="chart-pie"></div>
+        <div class="chart-bar"></div>
+        <div class="chart-bar"></div>
+        <div class="chart-bar"></div>
+      </div>
+    </div> -->
+  </div>
+</div>

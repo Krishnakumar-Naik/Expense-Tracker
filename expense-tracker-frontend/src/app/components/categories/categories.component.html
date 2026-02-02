@@ -1,0 +1,99 @@
+<div class="dashboard-wrapper">
+    <app-navbar></app-navbar>
+
+    <main class="content-container">
+        <div class="header-row">
+            <h1 class="page-title">Manage <span class="text-gradient">Categories</span></h1>
+            <p class="subtitle">Personalize your tracking with custom labels</p>
+        </div>
+
+        <!-- Add Category Form -->
+        <div class="glass-card add-category-card">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Category Name</label>
+                    <input type="text" [(ngModel)]="newCategoryName" placeholder="e.g. Gym, Freelance..."
+                        class="custom-input">
+                </div>
+                <div class="input-group">
+                    <label>Type</label>
+                    <app-custom-dropdown [options]="categoryTypeOptions" [(value)]="newCategoryType">
+                    </app-custom-dropdown>
+                </div>
+                <div class="action-group">
+                    <button class="btn-primary-gradient" (click)="addCategory()">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add Category
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="categories-container">
+            <!-- User Categories -->
+            <section class="category-section">
+                <h3 class="section-title">Your Custom Categories</h3>
+                <div class="category-grid">
+                    <div class="category-item-card" *ngFor="let cat of userCategories"
+                        [class.editing]="editingCategory?._id === cat._id">
+                        <div class="view-mode" *ngIf="editingCategory?._id !== cat._id">
+                            <div class="cat-content">
+                                <div class="cat-icon" [class.income]="cat.type === 'income'"
+                                    [class.expense]="cat.type === 'expense'">
+                                    {{cat.name.charAt(0).toUpperCase()}}
+                                </div>
+                                <div class="cat-details">
+                                    <span class="cat-name">{{cat.name}}</span>
+                                    <span class="cat-type">{{cat.type | titlecase}}</span>
+                                </div>
+                            </div>
+                            <div class="cat-actions">
+                                <button class="btn-icon" (click)="startEdit(cat)" title="Edit">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                    </svg>
+                                </button>
+                                <button class="btn-icon delete" (click)="deleteCategory(cat._id)" title="Delete">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path
+                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="edit-mode" *ngIf="editingCategory?._id === cat._id">
+                            <input type="text" [(ngModel)]="editName" class="edit-input">
+                            <div class="edit-actions">
+                                <button class="btn-save" (click)="saveEdit()">Save</button>
+                                <button class="btn-cancel" (click)="cancelEdit()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="userCategories.length === 0" class="empty-state">
+                        <p>No custom categories yet. Add one above!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Default Suggestions -->
+            <section class="category-section">
+                <h3 class="section-title">Quick Suggestions</h3>
+                <div class="suggestions-grid">
+                    <div class="suggestion-chip" *ngFor="let cat of defaultCategories" (click)="newCategoryName = cat">
+                        {{cat}}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>

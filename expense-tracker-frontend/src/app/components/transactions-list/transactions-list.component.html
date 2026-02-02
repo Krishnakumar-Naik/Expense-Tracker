@@ -1,0 +1,60 @@
+<div class="dashboard-wrapper">
+    <!-- Shared Web3 Navbar -->
+    <app-navbar></app-navbar>
+
+    <main class="content-container">
+        <div class="header-row">
+            <h1 class="page-title">Transaction <span class="text-gradient">History</span></h1>
+            <button class="btn-export" (click)="exportToCSV()">
+                <i class="bi bi-download"></i> Export CSV
+            </button>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="glass-card filter-card">
+            <div class="filter-grid">
+                <div class="search-box">
+                    <input type="text" [(ngModel)]="filters.search" (ngModelChange)="applyFilters()"
+                        placeholder="Search categories...">
+                </div>
+                <app-custom-dropdown [options]="typeOptions" [(value)]="filters.type" (valueChange)="applyFilters()">
+                </app-custom-dropdown>
+                <app-custom-dropdown [options]="categoryOptions" [(value)]="filters.category"
+                    (valueChange)="applyFilters()">
+                </app-custom-dropdown>
+                <input type="date" [(ngModel)]="filters.startDate" (ngModelChange)="applyFilters()" class="custom-date">
+                <input type="date" [(ngModel)]="filters.endDate" (ngModelChange)="applyFilters()" class="custom-date">
+            </div>
+        </div>
+
+        <!-- Transactions List -->
+        <div class="transactions-grid">
+            <div class="glass-card transaction-item" *ngFor="let t of filteredTransactions">
+                <div class="t-left">
+                    <div class="t-icon" [class.income]="t.type === 'income'" [class.expense]="t.type === 'expense'">
+                        <i [class]="t.type === 'income' ? 'bi bi-arrow-down-left' : 'bi bi-arrow-up-right'"></i>
+                    </div>
+                    <div class="t-info">
+                        <span class="t-category">{{t.category}}</span>
+                        <span class="t-date">{{t.date | date:'mediumDate'}}</span>
+                    </div>
+                </div>
+                <div class="t-right">
+                    <span class="t-amount" [class.positive]="t.type === 'income'"
+                        [class.negative]="t.type === 'expense'">
+                        {{t.type === 'income' ? '+' : '-'}} {{t.amount | currency:currencyCode }}
+                    </span>
+                    <div class="t-actions">
+                        <button class="btn-icon delete" (click)="deleteTransaction(t._id)">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="filteredTransactions.length === 0" class="empty-state">
+                No transactions found matching your criteria.
+            </div>
+        </div>
+    </main>
+</div>

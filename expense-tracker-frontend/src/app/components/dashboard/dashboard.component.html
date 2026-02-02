@@ -1,0 +1,118 @@
+<div class="dashboard-wrapper">
+    <!-- Shared Web3 Navbar -->
+    <app-navbar></app-navbar>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <!-- Text Content -->
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Track. Analyze.<br>
+                    <span class="text-gradient">Control Your Money.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Stay on top of your finances with secure expense tracking and insightful analytics.
+                </p>
+                <div class="cta-group">
+                    <a routerLink="/add-transaction" class="btn-primary-glow">Get Started</a>
+                    <a routerLink="/reports" class="btn-secondary-glow">View Reports</a>
+                </div>
+            </div>
+
+            <!-- Dashboard Preview Card -->
+            <div class="hero-visual">
+                <div class="dashboard-card">
+                    <div class="card-header-row">
+                        <div class="card-title">
+                            <i class="bi bi-wallet2"></i> Financial Overview
+                        </div>
+                        <div class="card-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+
+                    <div class="card-body-grid">
+                        <!-- Income & Expense Row -->
+                        <div class="stat-row">
+                            <div class="stat-item income-item">
+                                <div class="stat-icon"><i class="bi bi-arrow-down"></i></div>
+                                <div class="stat-info">
+                                    <span class="label">INCOME</span>
+                                    <span class="value">{{ totalIncome | currency:currencyCode }}</span>
+                                </div>
+                            </div>
+                            <div class="stat-item expense-item">
+                                <div class="stat-icon"><i class="bi bi-arrow-up"></i></div>
+                                <div class="stat-info">
+                                    <span class="label">EXPENSE</span>
+                                    <span class="value">{{ totalExpense | currency:currencyCode }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Savings Progress -->
+                        <div class="savings-container">
+                            <div class="savings-header">
+                                <span class="label">TOTAL SAVINGS</span>
+                                <span class="value">{{ savings | currency:currencyCode }}</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Transactions List -->
+                        <div class="recent-list">
+                            <div class="list-header">RECENT ACTIVITY</div>
+                            <div class="list-item" *ngFor="let t of transactions.slice(0, 3)">
+                                <span class="t-name">{{ t.category }}</span>
+                                <span class="t-val" [class.positive]="t.type === 'income'"
+                                    [class.negative]="t.type === 'expense'">
+                                    {{ t.type === 'income' ? '+' : '-' }} {{ t.amount | currency:currencyCode }}
+                                </span>
+                            </div>
+                            <div *ngIf="transactions.length === 0" class="empty-state">No transactions yet</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Glow behind card -->
+                <div class="hero-glow"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feat-card">
+                <div class="feat-icon">
+                    <img src="/data-analytics.png" alt="Analytics">
+                </div>
+                <h3>Advanced Analytics</h3>
+                <p>Visualize your spending habits with intuitive charts.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">
+                    <img src="/secure-data.png" alt="Secure">
+                </div>
+                <h3>Secure Data</h3>
+                <p>Your financial data is encrypted and safe.</p>
+            </div>
+            <div class="feat-card">
+                <div class="feat-icon">
+                    <img src="/real-time.png" alt="Real-time">
+                </div>
+                <h3>Real-time Tracking</h3>
+                <p>Transactions update instantly across devices.</p>
+            </div>
+            <div class="feat-card" routerLink="/group-split" style="cursor: pointer;">
+                <div class="feat-icon">
+                    <i class="bi bi-people-fill" style="font-size: 2rem; color: #d946ef;"></i>
+                </div>
+                <h3>Group Splits</h3>
+                <p>Divide bills and expenses easily with your friends.</p>
+            </div>
+        </div>
+    </section>
+</div>

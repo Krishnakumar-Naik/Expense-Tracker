@@ -1,0 +1,91 @@
+<div class="page-wrapper">
+    <!-- Shared Web3 Navbar -->
+    <app-navbar></app-navbar>
+
+    <div class="glass-card">
+        <h2 class="card-title">Add Transaction</h2>
+
+        <form (ngSubmit)="onSubmit()">
+            <!-- Transaction Type -->
+            <div class="mb-4">
+                <label class="form-label">Transaction Type</label>
+                <div class="radio-group">
+                    <label class="custom-radio" [class.selected]="transaction.type === 'income'">
+                        <input type="radio" name="type" value="income" [(ngModel)]="transaction.type">
+                        <span>Income</span>
+                    </label>
+                    <label class="custom-radio" [class.selected]="transaction.type === 'expense'">
+                        <input type="radio" name="type" value="expense" [(ngModel)]="transaction.type">
+                        <span>Expense</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Amount -->
+            <div class="input-wrapper">
+                <label class="form-label">Amount</label>
+                <div style="position: relative;">
+                    <span class="currency-prefix">{{ currencySymbol }}</span>
+                    <input type="number" class="custom-input custom-input-currency" [(ngModel)]="transaction.amount"
+                        name="amount" required placeholder="0">
+                </div>
+            </div>
+
+            <!-- Category -->
+            <div class="input-wrapper">
+                <label class="form-label">Category</label>
+                <div *ngIf="!showCustomCategory">
+                    <div class="select-with-btn">
+                        <app-custom-dropdown style="flex: 1;" [options]="categoryOptions"
+                            [(value)]="transaction.category" placeholder="Select a category">
+                        </app-custom-dropdown>
+                        <button type="button" class="btn-sm-action" (click)="toggleCustom()">
+                            New?
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="showCustomCategory" class="custom-cat-input">
+                    <div class="select-with-btn">
+                        <input type="text" class="custom-input" [(ngModel)]="customCategoryName" name="customCategory"
+                            placeholder="Enter new category name">
+                        <button type="button" class="btn-sm-action cancel" (click)="toggleCustom()">
+                            Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date -->
+            <div class="input-wrapper">
+                <label class="form-label">Date</label>
+                <input type="date" class="custom-input" [ngModel]="transaction.date | date:'yyyy-MM-dd'"
+                    (ngModelChange)="transaction.date = $event" name="date" required>
+            </div>
+
+            <!-- Note -->
+            <div class="input-wrapper">
+                <label class="form-label">Note (Optional)</label>
+                <textarea class="custom-input custom-textarea" [(ngModel)]="transaction.note" name="note"
+                    placeholder="Add a description..."></textarea>
+            </div>
+
+            <!-- Upload Receipt -->
+            <div class="input-wrapper">
+                <label class="form-label">Upload Receipt (Optional)</label>
+                <div class="upload-box">
+                    <input type="file" id="receipt-upload" class="file-input">
+                    <label for="receipt-upload" class="upload-label">
+                        <i class="bi bi-cloud-arrow-up"></i>
+                        <span>Click to upload or drag & drop</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="btn-group">
+                <button type="submit" class="btn-primary-gradient">Add Transaction</button>
+                <a routerLink="/dashboard" class="btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

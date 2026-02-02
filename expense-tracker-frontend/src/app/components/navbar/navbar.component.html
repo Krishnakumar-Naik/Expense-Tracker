@@ -1,0 +1,44 @@
+<header class="web3-navbar">
+    <div class="nav-container">
+        <a class="brand-logo" routerLink="/dashboard">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="url(#nav_grad_1)" />
+                    <path d="M2 17L12 22L22 17" stroke="url(#nav_grad_2)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M2 12L12 17L22 12" stroke="url(#nav_grad_3)" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <defs>
+                        <linearGradient id="nav_grad_1" x1="2" y1="2" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#ec4899" />
+                            <stop offset="1" stop-color="#3b82f6" />
+                        </linearGradient>
+                        <linearGradient id="nav_grad_2" x1="2" y1="17" x2="22" y2="17" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#ec4899" />
+                            <stop offset="1" stop-color="#3b82f6" />
+                        </linearGradient>
+                        <linearGradient id="nav_grad_3" x1="2" y1="12" x2="22" y2="12" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#ec4899" />
+                            <stop offset="1" stop-color="#3b82f6" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <span class="brand-text">Expense <span class="highlight">Tracker</span></span>
+        </a>
+
+        <nav class="nav-links">
+            <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">Dashboard</a>
+            <a routerLink="/transactions" routerLinkActive="active" class="nav-item">History</a>
+            <a routerLink="/reports" routerLinkActive="active" class="nav-item">Reports</a>
+            <a routerLink="/categories" routerLinkActive="active" class="nav-item">Categories</a>
+            <a routerLink="/group-split" routerLinkActive="active" class="nav-item">Groups</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a routerLink="/settings" class="btn-settings" title="Settings">
+                <img src="/settings.png" alt="Settings" class="settings-icon-img">
+            </a>
+        </div>
+    </div>
+</header>

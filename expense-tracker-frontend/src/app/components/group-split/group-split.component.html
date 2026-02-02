@@ -1,0 +1,158 @@
+<div class="dashboard-wrapper">
+    <app-navbar></app-navbar>
+
+    <main class="content-container">
+        <header class="header-row">
+            <div>
+                <h1 class="page-title">Group <span class="text-gradient">Splits</span></h1>
+                <p class="subtitle">Split expenses easily with friends and family.</p>
+            </div>
+            <button *ngIf="view === 'list'" class="btn-primary-gradient" (click)="view = 'create'">
+                <i class="bi bi-plus-lg"></i> Create New Group
+            </button>
+            <button *ngIf="view !== 'list'" class="btn-outline-secondary" (click)="backToList()">
+                <i class="bi bi-arrow-left"></i> Back to Groups
+            </button>
+        </header>
+
+        <!-- View: List Groups -->
+        <div *ngIf="view === 'list'" class="group-grid">
+            <div class="glass-card group-card" *ngFor="let group of groups" (click)="selectGroup(group)">
+                <div class="group-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="group-info">
+                    <h3>{{ group.name }}</h3>
+                    <p>{{ group.members.length }} members</p>
+                </div>
+                <i class="bi bi-chevron-right move-icon"></i>
+            </div>
+
+            <div *ngIf="groups.length === 0" class="empty-state">
+                <i class="bi bi-person-plus"></i>
+                <p>No groups yet. Create one to start splitting!</p>
+            </div>
+        </div>
+
+        <!-- View: Create Group -->
+        <div *ngIf="view === 'create'" class="glass-card form-card animate-slide-up">
+            <h3>Create a New Group</h3>
+
+            <div class="input-group">
+                <label>Group Name</label>
+                <input type="text" [(ngModel)]="newGroupName" placeholder="e.g. Goa Trip, Roomies" class="custom-input">
+            </div>
+
+            <div class="input-group friend-search">
+                <label>Add Friends by Email</label>
+                <div class="search-row">
+                    <input type="email" [(ngModel)]="friendEmail" placeholder="friend@example.com" class="custom-input">
+                    <button class="btn-action" (click)="searchAndAddFriend()">Add</button>
+                </div>
+            </div>
+
+            <div class="members-list" *ngIf="newGroupMembers.length > 0">
+                <span class="member-chip" *ngFor="let member of newGroupMembers">
+                    {{ member.name }}
+                    <i class="bi bi-x-circle-fill" (click)="removeMember(member.email)"></i>
+                </span>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-primary-gradient" (click)="createGroup()">Create Group</button>
+            </div>
+        </div>
+
+        <!-- View: Group Details & Add Expense -->
+        <div *ngIf="view === 'details'" class="details-layout">
+            <div class="left-col">
+                <div class="glass-card expense-form">
+                    <h3>Split an Expense</h3>
+                    <div class="input-group">
+                        <label>Description</label>
+                        <input type="text" [(ngModel)]="newExpenseDescription" placeholder="What's this for?"
+                            class="custom-input">
+                    </div>
+                    <div class="input-group">
+                        <label>Total Amount</label>
+                        <div class="currency-input">
+                            <span class="prefix">{{ currencySymbol }}</span>
+                            <input type="number" [(ngModel)]="newExpenseAmount" placeholder="0.00" class="custom-input">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Split Type</label>
+                        <div class="split-toggle">
+                            <button type="button" [class.active]="splitType === 'equal'"
+                                (click)="splitType = 'equal'">Split Equally</button>
+                            <button type="button" [class.active]="splitType === 'manual'"
+                                (click)="splitType = 'manual'">Manual Split</button>
+                        </div>
+                    </div>
+
+                    <div *ngIf="splitType === 'equal'" class="split-equal-info">
+                        <p class="split-info">Expense will be split equally among all {{ selectedGroup.members.length }}
+                            members.</p>
+                        <p *ngIf="newExpenseAmount" class="split-preview">Each pays: <strong>{{ (newExpenseAmount /
+                                selectedGroup.members.length) | currency:currencyCode }}</strong></p>
+                    </div>
+
+                    <div *ngIf="splitType === 'manual'" class="manual-split-list animate-slide-up">
+                        <div class="manual-member-item" *ngFor="let member of selectedGroup.members">
+                            <span>{{ member.name }}</span>
+                            <div class="currency-input-sm">
+                                <span class="prefix">{{ currencySymbol }}</span>
+                                <input type="number" [(ngModel)]="manualSplits[member._id]" class="custom-input-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-primary-gradient w-100" (click)="addExpense()"
+                        [disabled]="!newExpenseDescription || !newExpenseAmount">
+                        Add Expense
+                    </button>
+                </div>
+
+                <div class="glass-card members-card">
+                    <h3>Group Balances</h3>
+                    <div class="member-item" *ngFor="let member of selectedGroup.members">
+                        <div class="member-avatar">{{ member.name.charAt(0) }}</div>
+                        <div class="member-name">
+                            <span>{{ member.name }} <small *ngIf="member._id === currentUserId">(You)</small></span>
+                            <small>{{ member.email }}</small>
+                        </div>
+                        <div class="member-balance" [class.positive]="getMemberBalance(member._id) > 0"
+                            [class.negative]="getMemberBalance(member._id) < 0">
+                            <span *ngIf="getMemberBalance(member._id) > 0">Gets back</span>
+                            <span *ngIf="getMemberBalance(member._id) < 0">Owes</span>
+                            <span *ngIf="getMemberBalance(member._id) === 0">Settled up</span>
+                            <strong *ngIf="getMemberBalance(member._id) !== 0">
+                                {{ (getMemberBalance(member._id) > 0 ? getMemberBalance(member._id) :
+                                -getMemberBalance(member._id)) | currency:currencyCode }}
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-col">
+                <div class="glass-card activity-card">
+                    <h3>Recent Activity</h3>
+                    <div class="expense-list">
+                        <div class="expense-item" *ngFor="let exp of expenses">
+                            <div class="exp-left">
+                                <span class="exp-desc">{{ exp.description }}</span>
+                                <span class="exp-meta">Paid by {{ exp.paidBy.name }} • {{ exp.createdAt |
+                                    date:'shortDate' }}</span>
+                            </div>
+                            <div class="exp-right">
+                                <span class="exp-amount">{{ exp.totalAmount | currency:currencyCode }}</span>
+                            </div>
+                        </div>
+                        <div *ngIf="expenses.length === 0" class="empty-list">No expenses yet.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

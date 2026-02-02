@@ -1,0 +1,364 @@
+/* Global Reset for Component */
+:host {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Page Background */
+.login-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #050511;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(76, 29, 149, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Brand Logo */
+.brand-logo {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 20;
+}
+
+.logo-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.highlight {
+    background: linear-gradient(135deg, #ec4899, #3b82f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Content Container */
+.content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Glass Card */
+.glass-card {
+    width: 100%;
+    max-width: 450px;
+    /* Slightly narrower for better proportion */
+    background: rgba(13, 15, 30, 0.85);
+    /* Darker for better readibility */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    position: relative;
+    padding: 2px;
+    /* Small uniform padding for the border effect */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    /* Ensure card is ABOVE decoration */
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width calculation */
+    display: flex;
+    /* Ensure child fills height/width properly */
+    flex-direction: column;
+}
+
+.glow-border {
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.2));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.card-content {
+    background: #0d0f1a;
+    /* Solid dark color with slight tint to prevent see-through issues */
+    border-radius: 22px;
+    padding: 40px 30px;
+    width: 100%;
+    /* Force full width */
+    height: 100%;
+    box-sizing: border-box;
+    /* Ensure padding is included in width */
+    flex: 1;
+    /* Grow to fill container */
+}
+
+/* Text styles */
+.header-section {
+    margin-bottom: 35px;
+}
+
+.welcome-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #a855f7, #3b82f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+/* Form Styles */
+.input-group-custom {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    display: block;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    margin-left: 4px;
+}
+
+.input-field-wrapper {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.input-field-wrapper:focus-within {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.custom-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 14px 16px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toggle-password:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.forgot-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.forgot-link {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.forgot-link:hover {
+    color: #6366f1;
+}
+
+/* Buttons */
+.btn-primary-gradient {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #d946ef 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.btn-primary-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+}
+
+.divider {
+    text-align: center;
+    margin: 24px 0;
+    position: relative;
+}
+
+.divider span {
+    background: rgba(13, 15, 30, 0.01);
+    /* Matches card bg roughly but kept minimal */
+    padding: 0 10px;
+    color: #64748b;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary-outline {
+    display: block;
+    width: 92%;
+    margin: 0 auto;
+    /* Center the button */
+    text-align: center;
+    padding: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-secondary-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+
+/* Decoration Side (Hidden on mobile) */
+.decoration-side {
+    position: absolute;
+    right: 5%;
+    /* Moved further right */
+    top: 50%;
+    transform: translateY(-50%) perspective(1000px) rotateY(-10deg);
+    width: 300px;
+    height: 300px;
+    display: none;
+    z-index: 1;
+    /* Lower z-index so it stays BEHIND the card if they touch */
+    pointer-events: none;
+}
+
+@media (min-width: 992px) {
+    .decoration-side {
+        display: block;
+    }
+
+    /* Ensure content stays centered but respects decoration */
+    .content-container {
+        justify-content: center;
+    }
+}
+
+/* Floating Chart Animation */
+.floating-chart {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    animation: floating 6s ease-in-out infinite;
+}
+
+.chart-pie {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#3b82f6 30%, #ec4899 30% 70%, #8b5cf6 70%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.chart-bar {
+    position: absolute;
+    bottom: 20px;
+    background: linear-gradient(to top, rgba(59, 130, 246, 0.8), rgba(139, 92, 246, 0.8));
+    width: 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.chart-bar:nth-child(2) {
+    left: 40px;
+    height: 60px;
+    animation-delay: 0.5s;
+}
+
+.chart-bar:nth-child(3) {
+    left: 80px;
+    height: 100px;
+    animation-delay: 1s;
+}
+
+.chart-bar:nth-child(4) {
+    left: 120px;
+    height: 140px;
+    animation-delay: 1.5s;
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}

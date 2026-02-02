@@ -1,0 +1,209 @@
+.dashboard-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #050511;
+    background-image:
+        radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 25%);
+}
+
+/* --- Clean Navbar Replaced by app-navbar --- */
+
+/* History Content */
+.content-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 20px 60px;
+}
+
+.header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    margin: 0;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #d946ef, #3b82f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-export {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-export:hover {
+    background: rgba(16, 185, 129, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Filter Card */
+.filter-card {
+    padding: 20px;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.02);
+    overflow: visible;
+    /* Ensure dropdowns show over the card */
+    position: relative;
+    z-index: 50;
+    /* Ensure search row is above transaction list */
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+.filter-grid>* {
+    height: 48px;
+    width: 100%;
+}
+
+.search-box input,
+.custom-date {
+    width: 100%;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0 16px;
+    color: white;
+    outline: none;
+    transition: all 0.3s;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+}
+
+.search-box input:focus,
+.custom-date:focus {
+    border-color: #3b82f6;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Transactions Grid */
+.transactions-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(15, 23, 42, 0.4);
+    transition: all 0.2s;
+}
+
+.transaction-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(5px);
+}
+
+.t-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.t-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.t-icon.income {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.t-icon.expense {
+    background: rgba(244, 63, 94, 0.1);
+    color: #f43f5e;
+}
+
+.t-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.t-category {
+    font-weight: 700;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.t-date {
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.t-right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.t-amount {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.t-amount.positive {
+    color: #10b981;
+}
+
+.t-amount.negative {
+    color: #f43f5e;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-icon.delete:hover {
+    color: #f43f5e;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px;
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .filter-grid>* {
+        flex: 1 1 100%;
+    }
+}

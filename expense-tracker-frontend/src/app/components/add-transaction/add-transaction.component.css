@@ -1,0 +1,210 @@
+/* Global Page Reset */
+:host {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Outfit', sans-serif;
+}
+
+.page-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #050511;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(76, 29, 149, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+.glass-card {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(13, 15, 30, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: visible;
+    /* Changed from hidden to show dropdown */
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.form-label {
+    display: block;
+    font-size: 1rem;
+    color: #cbd5e1;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.radio-group {
+    display: flex;
+    gap: 30px;
+}
+
+.custom-radio {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: color 0.2s;
+    font-size: 1.1rem;
+}
+
+.custom-radio input {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #64748b;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.custom-radio input:checked {
+    border-color: #3b82f6;
+    background-color: transparent;
+}
+
+.custom-radio input:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+}
+
+.custom-radio.selected {
+    color: white;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.custom-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 16px 20px;
+    color: white;
+    font-size: 1.1rem;
+    outline: none;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.custom-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.currency-prefix {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.custom-input-currency {
+    padding-left: 40px;
+}
+
+.select-with-btn {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    /* Ensure vertical alignment */
+}
+
+.btn-sm-action {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    border: none;
+    color: white;
+    padding: 0 20px;
+    height: 48px;
+    /* Match height of items */
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.btn-sm-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-sm-action.cancel {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+}
+
+.btn-sm-action.cancel:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.btn-primary-gradient {
+    flex: 1;
+    background: linear-gradient(135deg, #ec4899, #3b82f6);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 16px;
+    border-radius: 14px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.custom-textarea {
+    min-height: 100px;
+}
